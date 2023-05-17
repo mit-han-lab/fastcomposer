@@ -1,4 +1,4 @@
-# FastComposer: Tuning-Free Multi-Subject Image Generation with Localized Attention [[website](https://fastcomposer.mit.edu/)] [[demo](https://huggingface.co/spaces/mit-han-lab/FastComposer)]
+# FastComposer: Tuning-Free Multi-Subject Image Generation with Localized Attention [[website](https://fastcomposer.mit.edu/)] 
 
 ![multi-subject](figures/multi-subject.png)
 
@@ -37,8 +37,7 @@ bash scripts/run_inference.sh
 - [x] Release inference code
 - [x] Release pre-trained models
 - [ ] Release demo
-- [ ] Release training code
-- [ ] Release training data
+- [ ] Release training code and data
 - [ ] Release evaluation code and data
 
 ## Citation

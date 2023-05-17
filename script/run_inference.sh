@@ -14,7 +14,6 @@ CUDA_VISIBLE_DEVICES=0 accelerate launch \
     --image_encoder_name_or_path openai/clip-vit-large-patch14 \
     --num_image_tokens 1 \
     --max_num_objects 2 \
-    --test_resolution 256 \
     --object_resolution 224 \
     --generate_height 512 \
     --generate_width 512 \
