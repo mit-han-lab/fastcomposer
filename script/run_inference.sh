@@ -1,4 +1,4 @@
-CAPTION="a man <|image|> and a man <|image|> sitting in a park"
+CAPTION="a man <|image|> and a man <|image|> are reading book together"
 DEMO_NAME="newton_einstein"
 
 CUDA_VISIBLE_DEVICES=0 accelerate launch \
