@@ -4,7 +4,7 @@ from diffusers.pipelines.stable_diffusion import StableDiffusionPipelineOutput
 
 
 @torch.no_grad()
-def stable_diffusion_call_with_references_multiple_conditioning(
+def stable_diffusion_call_with_references_delayed_conditioning(
     self,
     prompt: Union[str, List[str]] = None,
     height: Optional[int] = None,
