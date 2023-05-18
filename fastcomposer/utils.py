@@ -9,7 +9,7 @@ import numpy as np
 logger = get_logger(__name__)
 
 
-def parse_args():
+def parse_args(default=False):
     parser = argparse.ArgumentParser(description="Simple example of a training script.")
     parser.add_argument(
         "--pretrained_model_name_or_path",
@@ -355,7 +355,7 @@ def parse_args():
     parser.add_argument(
         "--image_encoder_name_or_path",
         type=str,
-        default="laion/CLIP-ViT-H-14-laion2B-s32B-b79K",
+        default="openai/clip-vit-large-patch14",
     )
 
     parser.add_argument(
@@ -675,13 +675,15 @@ def parse_args():
         default=1,
     )
 
+    if default:
+        return parser.parse_args([])
+
     args = parser.parse_args()
     env_local_rank = int(os.environ.get("LOCAL_RANK", -1))
     if env_local_rank != -1 and env_local_rank != args.local_rank:
         args.local_rank = env_local_rank
 
     return args
-
 
 def pixel_values_to_image(pixel_values):
     pixel_values = pixel_values[0].cpu().numpy()

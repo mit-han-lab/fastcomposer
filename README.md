@@ -1,4 +1,4 @@
-# FastComposer: Tuning-Free Multi-Subject Image Generation with Localized Attention [[website](https://fastcomposer.mit.edu/)] 
+# FastComposer: Tuning-Free Multi-Subject Image Generation with Localized Attention [[website](https://fastcomposer.mit.edu/)] [[demo](https://17283ded5673112d93.gradio.live)]
 
 ![multi-subject](figures/multi-subject.png)
 
@@ -15,7 +15,7 @@ Diffusion models excel at text-to-image generation, especially in subject-driven
 conda create -n fastcomposer python
 conda activate fastcomposer
 pip install torch torchvision torchaudio
-pip install transformers accelerate datasets evaluate diffusers xformers triton scipy clip 
+pip install transformers accelerate datasets evaluate diffusers xformers triton scipy clip gradio
 
 python setup.py install
 ```
@@ -27,6 +27,14 @@ mkdir -p model/fastcomposer ; cd model/fastcomposer
 wget https://huggingface.co/mit-han-lab/fastcomposer/resolve/main/pytorch_model.bin
 ```
 
+### Gradio Demo
+
+We host a demo [here](https://17283ded5673112d93.gradio.live). You can also run the demo locally by 
+
+```bash   
+python demo/run_gradio.py --finetuned_model_path model/fastcomposer/pytorch_model.bin  --mixed_precision "fp16"
+```
+
 ### Inference
 
 ```bash
@@ -36,7 +44,7 @@ bash scripts/run_inference.sh
 
 - [x] Release inference code
 - [x] Release pre-trained models
-- [ ] Release demo
+- [x] Release demo
 - [ ] Release training code and data
 - [ ] Release evaluation code and data
 
