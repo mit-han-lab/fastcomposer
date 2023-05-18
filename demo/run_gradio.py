@@ -106,7 +106,7 @@ def create_demo():
                         'If set to -1, a different seed will be used each time.'
                     )
                     guidance_scale = gr.Slider(label='Guidance scale',
-                                               minimum=0,
+                                               minimum=1.5,
                                                maximum=50,
                                                step=0.1,
                                                value=5.0)
