@@ -1,4 +1,4 @@
-# FastComposer: Tuning-Free Multi-Subject Image Generation with Localized Attention [[website](https://fastcomposer.mit.edu/)] [[demo](https://17283ded5673112d93.gradio.live)]
+# FastComposer: Tuning-Free Multi-Subject Image Generation with Localized Attention [[website](https://fastcomposer.mit.edu/)] [[demo](https://e641423ac45cdd7955.gradio.live)]
 
 ![multi-subject](figures/multi-subject.png)
 
