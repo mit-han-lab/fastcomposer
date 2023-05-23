@@ -29,7 +29,7 @@ wget https://huggingface.co/mit-han-lab/fastcomposer/resolve/main/pytorch_model.
 
 ### Gradio Demo
 
-We host a demo [here](https://17283ded5673112d93.gradio.live). You can also run the demo locally by 
+We host a demo [here](https://2acfe10ec96df6f2b0.gradio.live). You can also run the demo locally by 
 
 ```bash   
 python demo/run_gradio.py --finetuned_model_path model/fastcomposer/pytorch_model.bin  --mixed_precision "fp16"
