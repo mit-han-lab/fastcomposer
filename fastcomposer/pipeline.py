@@ -91,7 +91,7 @@ class StableDiffusionFastCompposerPipeline(StableDiffusionPipeline):
 
         object_pixel_values = torch.stack(object_pixel_values, dim=0).to(memory_format=torch.contiguous_format).float()
         object_pixel_values = object_pixel_values.unsqueeze(0).to(dtype=weight_dtype, device=device)
-        global_object_embeds = self.image_encoder(object_pixel_values)
+        object_embeds = self.image_encoder(object_pixel_values)
 
         # augment the text embedding 
         input_ids, image_token_mask = self._tokenize_and_mask_noun_phrases_ends(prompt)
@@ -101,7 +101,7 @@ class StableDiffusionFastCompposerPipeline(StableDiffusionPipeline):
 
         augmented_prompt_embeds = self.postfuse_module(
             self.text_encoder(input_ids)[0],
-            global_object_embeds,
+            object_embeds,
             image_token_mask,
             num_objects
         )

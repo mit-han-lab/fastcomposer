@@ -123,12 +123,12 @@ def main():
 
     object_pixel_values = all_object_pixel_values  # [:, 0, :, :, :]
     if pipe.image_encoder is not None:
-        global_object_embeds = pipe.image_encoder(object_pixel_values)
+        object_embeds = pipe.image_encoder(object_pixel_values)
     else:
-        global_object_embeds = None
+        object_embeds = None
 
     encoder_hidden_states = pipe.text_encoder(
-        input_ids, image_token_mask, global_object_embeds, num_objects
+        input_ids, image_token_mask, object_embeds, num_objects
     )[0]
 
     encoder_hidden_states_text_only = pipe._encode_prompt(
@@ -140,7 +140,7 @@ def main():
 
     encoder_hidden_states = pipe.postfuse_module(
         encoder_hidden_states,
-        global_object_embeds,
+        object_embeds,
         image_token_mask,
         num_objects,
     )
