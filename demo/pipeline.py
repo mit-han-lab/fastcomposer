@@ -5,7 +5,8 @@ from fastcomposer.transforms import PadToSquare
 from torchvision import transforms as T
 from transformers import CLIPTokenizer
 from collections import OrderedDict
-import torch 
+import torch
+
 
 def convert_model_to_pipeline(args, device):
     model = FastComposerModel.from_pretrained(args)
@@ -21,16 +22,14 @@ def convert_model_to_pipeline(args, device):
         subfolder="tokenizer",
         revision=args.revision,
     )
-    tokenizer.add_tokens(['<A*>'], special_tokens=True)
-    image_token_id = tokenizer.convert_tokens_to_ids('<A*>')
+    tokenizer.add_tokens(["<A*>"], special_tokens=True)
+    image_token_id = tokenizer.convert_tokens_to_ids("<A*>")
 
     pipe = StableDiffusionFastCompposerPipeline.from_pretrained(
         args.pretrained_model_name_or_path, torch_dtype=weight_dtype
     ).to(device)
 
-    model.load_state_dict(
-        torch.load(args.finetuned_model_path, map_location="cpu")
-    )
+    model.load_state_dict(torch.load(args.finetuned_model_path, map_location="cpu"))
     model = model.to(dtype=weight_dtype, device=device)
 
     pipe.object_transforms = torch.nn.Sequential(
@@ -49,15 +48,16 @@ def convert_model_to_pipeline(args, device):
             ]
         )
     )
-    pipe.unet = model.unet 
+    pipe.unet = model.unet
     pipe.text_encoder = model.text_encoder
     pipe.postfuse_module = model.postfuse_module
     pipe.image_encoder = model.image_encoder
     pipe.image_token_id = image_token_id
     pipe.special_tokenizer = tokenizer
-    
-    del model 
+
+    del model
     return pipe
+
 
 if __name__ == "__main__":
     convert_model_to_pipeline()
