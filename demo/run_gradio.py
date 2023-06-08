@@ -25,6 +25,7 @@ class ModelWrapper:
         alpha_: float,
         num_steps: int,
     ):
+        print("Running model inference...")
         image = []
         if image1 != None:
             image.append(image1)
@@ -151,9 +152,12 @@ def create_demo():
 
 if __name__ == "__main__":
     demo = create_demo()
-    demo.queue(api_open=False).launch(
+    demo.queue(api_open=False)
+    demo.launch(
         show_error=True,
         server_name="0.0.0.0",
         server_port=8080,
+        ssl_verify=False,
+        ssl_certfile="cert.pem",
+        ssl_keyfile="key.pem",
     )
-

@@ -1,3 +1,5 @@
+*.pem
+
 # Byte-compiled / optimized / DLL files
 model/
 __pycache__/
