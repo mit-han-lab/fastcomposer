@@ -22,8 +22,8 @@ def convert_model_to_pipeline(args, device):
         subfolder="tokenizer",
         revision=args.revision,
     )
-    tokenizer.add_tokens(["<A*>"], special_tokens=True)
-    image_token_id = tokenizer.convert_tokens_to_ids("<A*>")
+    tokenizer.add_tokens(["img"], special_tokens=True)
+    image_token_id = tokenizer.convert_tokens_to_ids("img")
 
     pipe = StableDiffusionFastCompposerPipeline.from_pretrained(
         args.pretrained_model_name_or_path, torch_dtype=weight_dtype

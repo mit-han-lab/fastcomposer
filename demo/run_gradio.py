@@ -72,7 +72,7 @@ def create_demo():
 
     DESCRIPTION = """To run the demo, you should:   
     1. Upload your images. The order of image1 and image2 needs to match the order of the subects in the prompt. You only need 1 image for single subject generation.   
-    2. Input proper text prompts, such as "A woman <A*> and a man <A*> in the snow" or "A painting of a man <A*> in the style of Van Gogh", where "<A*>" specifies the token you want to augment and comes after the word.   
+    2. Input proper text prompts, such as "A woman img and a man img in the snow" or "A painting of a man img in the style of Van Gogh", where "img" specifies the token you want to augment and comes after the word.   
     3. Click the Run button. You can also adjust the hyperparameters to improve the results. Look at the job status to see if there are any errors with your input.
     """
     args = parse_args()
@@ -89,13 +89,22 @@ def create_demo():
             with gr.Column():
                 with gr.Box():
                     image1 = gr.Image(label="Image 1", type="pil")
+                    gr.Examples(
+                        examples=['data/newton_einstein/einstein/0.png'],
+                        inputs=image1,
+                    )
                     image2 = gr.Image(label="Image 2", type="pil")
-
+                    gr.Examples(
+                        examples=['data/newton_einstein/newton/0.png'],
+                        inputs=image2,
+                    )
                     gr.Markdown("Upload the image for your subject")
+                    
                 prompt = gr.Text(
+                    value='A man img and a man img sitting in a park',
                     label="Prompt",
-                    placeholder='e.g. "A woman <A*> and a man <A*> in the snow", "A painting of a man <A*> in the style of Van Gogh"',
-                    info='Use "<A*>" to specify the word you want to augment.',
+                    placeholder='e.g. "A woman img and a man img in the snow", "A painting of a man img in the style of Van Gogh"',
+                    info='Use "img" to specify the word you want to augment.',
                 )
                 alpha_ = gr.Slider(
                     label="alpha",
@@ -157,7 +166,4 @@ if __name__ == "__main__":
         show_error=True,
         server_name="0.0.0.0",
         server_port=8080,
-        ssl_verify=False,
-        ssl_certfile="cert.pem",
-        ssl_keyfile="key.pem",
     )
