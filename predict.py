@@ -78,10 +78,11 @@ class Predictor(BasePredictor):
     def predict(
         self,
         image1: Path = Input(description="First input image"),
-        image2: Path = Input(description="Second input image, optional", default=None),
+        image2: Path = Input(
+            description="Second input image, optional", default=None),
         prompt: str = Input(
             description='Input proper text prompts, such as "A woman img and a man img in the snow" or "A painting of a man img in the style of Van Gogh", where "img" specifies the token you want to augment and comes after the word.',
-            default="A manimg and a manimg singing in the park together.",
+            default="A man img and a man img singing in the park together.",
         ),
         alpha: float = Input(
             description="A smaller alpha aligns images with text better, but may deviate from the subject image. Increase alpha to improve identity preservation, decrease it for prompt consistency.",
