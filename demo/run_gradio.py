@@ -20,10 +20,12 @@ class ModelWrapper:
         image1: PIL.Image.Image,
         image2: PIL.Image.Image,
         prompt: str,
+        negative_prompt: str,
         seed: int,
         guidance_scale: float,
         alpha_: float,
         num_steps: int,
+        num_images: int,
     ):
         print("Running model inference...")
         image = []
@@ -54,11 +56,12 @@ class ModelWrapper:
         return (
             self.model(
                 prompt=prompt,
+                negative_prompt=negative_prompt,
                 height=512,
                 width=512,
                 num_inference_steps=num_steps,
                 guidance_scale=guidance_scale,
-                num_images_per_prompt=4,
+                num_images_per_prompt=num_images,
                 generator=generator,
                 alpha_=alpha_,
                 reference_subject_images=image,
@@ -90,21 +93,26 @@ def create_demo():
                 with gr.Box():
                     image1 = gr.Image(label="Image 1", type="pil")
                     gr.Examples(
-                        examples=['data/newton_einstein/einstein/0.png'],
+                        examples=["data/newton_einstein/einstein/0.png"],
                         inputs=image1,
                     )
                     image2 = gr.Image(label="Image 2", type="pil")
                     gr.Examples(
-                        examples=['data/newton_einstein/newton/0.png'],
+                        examples=["data/newton_einstein/newton/0.png"],
                         inputs=image2,
                     )
                     gr.Markdown("Upload the image for your subject")
-                    
+
                 prompt = gr.Text(
-                    value='A man img and a man img sitting in a park',
+                    value="A man img and a man img sitting in a park",
                     label="Prompt",
                     placeholder='e.g. "A woman img and a man img in the snow", "A painting of a man img in the style of Van Gogh"',
                     info='Use "img" to specify the word you want to augment.',
+                )
+                negative_prompt = gr.Text(
+                    value="((((ugly)))), (((duplicate))), ((morbid)), ((mutilated)), [out of frame], extra fingers, mutated hands, ((poorly drawn hands)), ((poorly drawn face)), (((mutation))), (((deformed))), ((ugly)), blurry, ((bad anatomy)), (((bad proportions))), ((extra limbs)), cloned face, (((disfigured))). out of frame, ugly, extra limbs, (bad anatomy), gross proportions, (malformed limbs), ((missing arms)), ((missing legs)), (((extra arms))), (((extra legs))), mutated hands, (fused fingers), (too many fingers), (((long neck)))",
+                    label="Negative Prompt",
+                    info='Features that you want to avoid.',
                 )
                 alpha_ = gr.Slider(
                     label="alpha",
@@ -113,6 +121,13 @@ def create_demo():
                     step=0.05,
                     value=0.8,
                     info="A smaller alpha aligns images with text better, but may deviate from the subject image. Increase alpha to improve identity preservation, decrease it for prompt consistency.",
+                )
+                num_images = gr.Slider(
+                    label="Number of generated images",
+                    minimum=1,
+                    maximum=8,
+                    step=1,
+                    value=4,
                 )
                 run_button = gr.Button("Run")
                 with gr.Accordion(label="Advanced options", open=False):
@@ -126,10 +141,10 @@ def create_demo():
                     )
                     guidance_scale = gr.Slider(
                         label="Guidance scale",
-                        minimum=1.5,
-                        maximum=50,
-                        step=0.1,
-                        value=5.0,
+                        minimum=1,
+                        maximum=10,
+                        step=1,
+                        value=5,
                     )
                     num_steps = gr.Slider(
                         label="Steps",
@@ -148,10 +163,12 @@ def create_demo():
             image1,
             image2,
             prompt,
+            negative_prompt,
             seed,
             guidance_scale,
             alpha_,
             num_steps,
+            num_images,
         ]
         run_button.click(
             fn=model.inference, inputs=inputs, outputs=[result, error_message]
