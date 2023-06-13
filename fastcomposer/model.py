@@ -520,17 +520,17 @@ class FastComposerModel(nn.Module):
         noisy_latents = noise_scheduler.add_noise(latents, noise, timesteps)
 
         # (bsz, max_num_objects, num_image_tokens, dim)
-        global_object_embeds = self.image_encoder(object_pixel_values)
+        object_embeds = self.image_encoder(object_pixel_values)
 
         encoder_hidden_states = self.text_encoder(
-            input_ids, image_token_mask, global_object_embeds, num_objects
+            input_ids, image_token_mask, object_embeds, num_objects
         )[
             0
         ]  # (bsz, seq_len, dim)
 
         encoder_hidden_states = self.postfuse_module(
             encoder_hidden_states,
-            global_object_embeds,
+            object_embeds,
             image_token_mask,
             num_objects,
         )

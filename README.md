@@ -1,4 +1,4 @@
-# FastComposer: Tuning-Free Multi-Subject Image Generation with Localized Attention [[website](https://fastcomposer.mit.edu/)] [[demo](https://17283ded5673112d93.gradio.live)][[Replicate API](https://replicate.com/cjwbw/fastcomposer)]
+# FastComposer: Tuning-Free Multi-Subject Image Generation with Localized Attention [[website](https://fastcomposer.mit.edu/)] [[demo](https://fastcomposer.hanlab.ai)][[Replicate API](https://replicate.com/cjwbw/fastcomposer)]
 
 ![multi-subject](figures/multi-subject.png)
 
@@ -29,7 +29,7 @@ wget https://huggingface.co/mit-han-lab/fastcomposer/resolve/main/pytorch_model.
 
 ### Gradio Demo
 
-We host a demo [here](https://17283ded5673112d93.gradio.live). You can also run the demo locally by 
+We host a demo [here](https://fastcomposer.hanlab.ai/). You can also run the demo locally by 
 
 ```bash   
 python demo/run_gradio.py --finetuned_model_path model/fastcomposer/pytorch_model.bin  --mixed_precision "fp16"
