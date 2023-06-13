@@ -119,7 +119,7 @@ def create_demo():
                     minimum=0,
                     maximum=1,
                     step=0.05,
-                    value=0.8,
+                    value=0.7,
                     info="A smaller alpha aligns images with text better, but may deviate from the subject image. Increase alpha to improve identity preservation, decrease it for prompt consistency.",
                 )
                 num_images = gr.Slider(
