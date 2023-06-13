@@ -43,8 +43,8 @@ class Predictor(BasePredictor):
             subfolder="tokenizer",
             revision=args.revision,
         )
-        tokenizer.add_tokens(["<A*>"], special_tokens=True)
-        image_token_id = tokenizer.convert_tokens_to_ids("<A*>")
+        tokenizer.add_tokens(["img"], special_tokens=True)
+        image_token_id = tokenizer.convert_tokens_to_ids("img")
 
         self.pipe = StableDiffusionFastCompposerPipeline.from_pretrained(
             args.pretrained_model_name_or_path, torch_dtype=weight_dtype
@@ -80,8 +80,8 @@ class Predictor(BasePredictor):
         image1: Path = Input(description="First input image"),
         image2: Path = Input(description="Second input image, optional", default=None),
         prompt: str = Input(
-            description='Input proper text prompts, such as "A woman <A*> and a man <A*> in the snow" or "A painting of a man <A*> in the style of Van Gogh", where "<A*>" specifies the token you want to augment and comes after the word.',
-            default="A man<A*> and a man<A*> singing in the park together.",
+            description='Input proper text prompts, such as "A woman img and a man img in the snow" or "A painting of a man img in the style of Van Gogh", where "img" specifies the token you want to augment and comes after the word.',
+            default="A manimg and a manimg singing in the park together.",
         ),
         alpha: float = Input(
             description="A smaller alpha aligns images with text better, but may deviate from the subject image. Increase alpha to improve identity preservation, decrease it for prompt consistency.",
