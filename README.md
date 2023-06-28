@@ -40,12 +40,29 @@ python demo/run_gradio.py --finetuned_model_path model/fastcomposer/pytorch_mode
 ```bash
 bash scripts/run_inference.sh
 ```
+
+### Training
+
+Prepare the FFHQ training data:
+  
+```bash 
+cd data
+wget https://huggingface.co/datasets/mit-han-lab/ffhq-fastcomposer/resolve/main/ffhq_fastcomposer.tgz
+tar -xvzf ffhq_fastcomposer.tgz
+```
+
+Run training:
+
+```bash
+bash scripts/run_training.sh
+```
+
 ## TODOs
 
 - [x] Release inference code
 - [x] Release pre-trained models
 - [x] Release demo
-- [ ] Release training code and data
+- [x] Release training code and data
 - [ ] Release evaluation code and data
 
 ## Citation
