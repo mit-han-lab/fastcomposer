@@ -206,8 +206,6 @@ def load_default_args():
         enable_xformers_memory_efficient_attention=False,
         train_text_encoder=False,
         train_image_encoder=False,
-        dataset_format="huggingface",
-        model_type="dreamer",
         keep_only_last_checkpoint=False,
         keep_interval=None,
         inference_steps=50,

@@ -93,12 +93,12 @@ def create_demo():
                 with gr.Box():
                     image1 = gr.Image(label="Image 1", type="pil")
                     gr.Examples(
-                        examples=["data/newton_einstein/einstein/0.png"],
+                        examples=["data/newton.jpeg"],
                         inputs=image1,
                     )
                     image2 = gr.Image(label="Image 2", type="pil")
                     gr.Examples(
-                        examples=["data/newton_einstein/newton/0.png"],
+                        examples=["data/einstein.jpeg"],
                         inputs=image2,
                     )
                     gr.Markdown("Upload the image for your subject")
@@ -119,7 +119,7 @@ def create_demo():
                     minimum=0,
                     maximum=1,
                     step=0.05,
-                    value=0.7,
+                    value=0.75,
                     info="A smaller alpha aligns images with text better, but may deviate from the subject image. Increase alpha to improve identity preservation, decrease it for prompt consistency.",
                 )
                 num_images = gr.Slider(

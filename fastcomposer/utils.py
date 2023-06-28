@@ -288,7 +288,6 @@ def parse_args(default=False):
     )
 
     # added arguments
-
     parser.add_argument(
         "--train_text_encoder",
         action="store_true",
@@ -296,19 +295,6 @@ def parse_args(default=False):
     parser.add_argument(
         "--train_image_encoder",
         action="store_true",
-    )
-
-    parser.add_argument(
-        "--dataset_format",
-        type=str,
-        default="huggingface",
-        choices=["huggingface", "dreamer"],
-    )
-
-    parser.add_argument(
-        "--model_type",
-        type=str,
-        default="dreamer",
     )
 
     parser.add_argument(
@@ -344,7 +330,7 @@ def parse_args(default=False):
         default=0,
         help="when to start merging noise prediction from multiple conditioning source",
     )
-    # dreamer specific arguments
+
     parser.add_argument(
         "--image_encoder_type",
         type=str,
@@ -684,11 +670,3 @@ def parse_args(default=False):
         args.local_rank = env_local_rank
 
     return args
-
-def pixel_values_to_image(pixel_values):
-    pixel_values = pixel_values[0].cpu().numpy()
-    pixel_values = np.transpose(pixel_values, (1, 2, 0))
-    pixel_values = np.clip(pixel_values / 2 + 0.5, 0, 1)
-    pixel_values = (pixel_values * 255).round().astype(np.uint8)
-    image = Image.fromarray(pixel_values)
-    return image
