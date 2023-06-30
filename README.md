@@ -15,7 +15,7 @@ Diffusion models excel at text-to-image generation, especially in subject-driven
 conda create -n fastcomposer python
 conda activate fastcomposer
 pip install torch torchvision torchaudio
-pip install transformers accelerate datasets evaluate diffusers==0.16.1 xformers triton scipy clip gradio
+pip install transformers==4.25.1 accelerate datasets evaluate diffusers==0.16.1 xformers triton scipy clip gradio
 
 python setup.py install
 ```
