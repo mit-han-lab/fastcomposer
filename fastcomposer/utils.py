@@ -661,6 +661,14 @@ def parse_args(default=False):
         default=1,
     )
 
+    parser.add_argument(
+        "--text_image_linking",
+        type=str,
+        default="postfuse",
+    )
+
+    parser.add_argument("--freeze_postfuse_module", action="store_true")
+
     if default:
         return parser.parse_args([])
 

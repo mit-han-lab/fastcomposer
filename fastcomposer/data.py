@@ -2,6 +2,11 @@ import os
 import torch
 from torchvision.io import read_image, ImageReadMode
 import glob
+import json
+import numpy as np
+import random
+from copy import deepcopy
+
 
 
 def prepare_image_token_idx(image_token_mask, max_num_objects):
