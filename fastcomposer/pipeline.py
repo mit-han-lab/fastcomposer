@@ -244,7 +244,7 @@ class StableDiffusionFastCompposerPipeline(StableDiffusionPipeline):
         assert do_classifier_free_guidance
 
         # 3. Encode input prompt
-        prompt_text_only = prompt.replace("<image>", "")
+        prompt_text_only = prompt.replace("img", "")
 
         prompt_embeds = self._encode_prompt(
             prompt_text_only,
