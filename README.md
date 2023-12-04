@@ -15,7 +15,7 @@ Diffusion models excel at text-to-image generation, especially in subject-driven
 conda create -n fastcomposer python
 conda activate fastcomposer
 pip install torch torchvision torchaudio
-pip install transformers==4.25.1 accelerate datasets evaluate diffusers==0.16.1 xformers triton scipy clip gradio
+pip install transformers==4.25.1 accelerate datasets evaluate diffusers==0.16.1 xformers triton scipy clip gradio facenet-pytorch
 
 python setup.py install
 ```
@@ -39,6 +39,14 @@ python demo/run_gradio.py --finetuned_model_path model/fastcomposer/pytorch_mode
 
 ```bash
 bash scripts/run_inference.sh
+```
+
+### Evaluation
+
+```bash
+python evaluation/single_object/run.py  --finetuned_model_path model/fastcomposer/pytorch_model.bin --mixed_precision "fp16"  --dataset_name data/celeba_test_single/  --seed 42  --num_images_per_prompt 4  --object_resolution 224  --output_dir OUTPUT_DIR  
+
+python evaluation/single_object/single_object_evaluation.py  --prediction_folder OUTPUT_DIR --reference_folder data/celeba_test_single/
 ```
 
 ### Training
