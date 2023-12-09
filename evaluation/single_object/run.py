@@ -21,6 +21,7 @@ def main():
         set_seed(args.seed)
 
     model = convert_model_to_pipeline(args, accelerator.device)
+    model.safety_checker = None 
 
     os.makedirs(args.output_dir, exist_ok=True)
 
