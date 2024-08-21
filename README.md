@@ -79,9 +79,9 @@ If you find FastComposer useful or relevant to your research, please kindly cite
 
 ```bibtex
 @article{xiao2023fastcomposer,
-            title={FastComposer: Tuning-Free Multi-Subject Image Generation with Localized Attention},
-            author={Xiao, Guangxuan and Yin, Tianwei and Freeman, William T. and Durand, Frédo and Han, Song},
-            journal={arXiv},
-            year={2023}
-          }
+  title={FastComposer: Tuning-Free Multi-Subject Image Generation with Localized Attention},
+  author={Xiao, Guangxuan and Yin, Tianwei and Freeman, William T. and Durand, Frédo and Han, Song},
+  journal={International Journal of Computer Vision},
+  year={2024}
+}
 ```
